@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+<script src="lib/scripts/require.js"></script>
+
+<script>
+
+
+
+// Retrieve
+var MongoClient = require(['mongodb']).MongoClient
+	, format = require('util').format;
+// Connect to the db
+MongoClient.connect("mongodb://127.0.0.1:27017/listlink", function(err, db) {
+  if(!err) {
+    console.log("We are connected");
+  }
+});	
+</script>
+
+YOLO bro	
+
+</head>
+
+
+<body>
+	
+</body>
+
+
+
+</html>
