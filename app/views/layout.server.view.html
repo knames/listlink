@@ -46,7 +46,15 @@
 </head>
 <body class="ng-cloak">
 <br><br>
-Welcome to ListLink! :D
+	{% block head %}
+		{% if !user %}
+			<h2>Welcome to ListLink! :D</h2>
+			<p>Please sign in.</p>
+		{% else %}
+			<h2>Welcome back to ListLink! :D</h2>
+			<p>Current username is {{ user.displayName }}<p>
+		{% endif %}
+	{% endblock %}
 
 	<!--Embedding The User Object-->
 	<script type="text/javascript">
