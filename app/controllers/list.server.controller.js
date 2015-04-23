@@ -38,3 +38,10 @@ exports.update = function(req, res, editList) {
 exports.remove = function(req, res, editList) {
   res.send('Attempted to remove list ' + editList);
 };
+
+/**
+ * Returns the current level of authorization of the validated user
+ */
+exports.hasAuthorization = function(req, res) {
+  next();
+};
