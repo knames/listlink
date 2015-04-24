@@ -12,13 +12,13 @@ module.exports = function(app) {
 		.get(users.requiresLogin, list.hasAuthorization, list.getLists)
 		.post(users.requiresLogin, list.hasAuthorization, list.create);
 
-  app.route('/list/:editList')
+  app.route('/edit/:editList')
     .put(users.requiresLogin, list.hasAuthorization, list.update)
     .delete(users.requiresLogin, list.hasAuthorization, list.remove);
 
 	// Finish by binding the list middleware
-	app.param('username', list.getLists);
-  app.param('username', list.create);
-  app.param('editList', list.update);
-  app.param('editList', list.remove);
+	// app.param('username', list.getLists);
+  // app.param('username', list.create);
+  // app.param('editList', list.update);
+  // app.param('editList', list.remove);
 };

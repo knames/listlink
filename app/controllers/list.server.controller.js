@@ -14,34 +14,34 @@ var mongoose = require('mongoose'),
 /**
  * Reads all the lists for the current username
  */
-exports.getLists = function(req, res, username) {
-  res.send('Attempted to get lists for ' + username);
+exports.getLists = function(req, res) {
+  res.send('Attempted to get lists' + req.head);
 };
 
 /**
  * Creates a list for the current username
  */
-exports.create = function(req, res, username) {
-  res.send('Attempted to create list for ' + username);
+exports.create = function(req, res) {
+  res.send('Attempted to create list' + req.head);
 };
 
 /**
  * Update a list by ID
  */
-exports.update = function(req, res, editList) {
-  res.send('Attempted to update list ' + editList);
+exports.update = function(req, res) {
+  res.send('Attempted to update list' + req.head);
 };
 
 /**
  * Remove a list by ID
  */
-exports.remove = function(req, res, editList) {
-  res.send('Attempted to remove list ' + editList);
+exports.remove = function(req, res) {
+  res.send('Attempted to remove list' + req.head);
 };
 
 /**
  * Returns the current level of authorization of the validated user
  */
-exports.hasAuthorization = function(req, res) {
+exports.hasAuthorization = function(req, res, next) {
   next();
 };
