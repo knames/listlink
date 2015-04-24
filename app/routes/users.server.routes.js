@@ -42,7 +42,7 @@ module.exports = function(app) {
 			'https://www.googleapis.com/auth/userinfo.email'
 		]
 	}));
-	app.route('/auth/google/callback').get(users.oauthCallback('google'));
+	app.route('/gcallback').get(users.oauthCallback('google'));
 
 	// Setting the linkedin oauth routes
 	app.route('/auth/linkedin').get(passport.authenticate('linkedin'));
