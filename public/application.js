@@ -7,6 +7,7 @@ angular.module(ApplicationConfiguration.applicationModuleName, ApplicationConfig
 angular.module(ApplicationConfiguration.applicationModuleName).config(['$locationProvider',
 	function($locationProvider) {
 		$locationProvider.hashPrefix('!');
+		$locationProvider.html5Mode(true);
 	}
 ]);
 
@@ -14,10 +15,6 @@ angular.module(ApplicationConfiguration.applicationModuleName).config(['$locatio
 angular.element(document).ready(function() {
 	//Fixing facebook bug with redirect
 	if (window.location.hash === '#') window.location.hash = '#!';
-
-	if(window.history && window.history.pushState){
-    $locationProvider.html5Mode(true);
-  }
 
 	//Then init the app
 	angular.bootstrap(document, [ApplicationConfiguration.applicationModuleName]);
