@@ -16,9 +16,5 @@ module.exports = function(app) {
     .put(users.requiresLogin, list.hasAuthorization, list.update)
     .delete(users.requiresLogin, list.hasAuthorization, list.remove);
 
-	// Finish by binding the list middleware
-	// app.param('username', list.getLists);
-  // app.param('username', list.create);
-  // app.param('editList', list.update);
-  // app.param('editList', list.remove);
+	
 };
