@@ -13,7 +13,11 @@ angular.module(ApplicationConfiguration.applicationModuleName).config(['$locatio
 //Then define the init function for starting up the application
 angular.element(document).ready(function() {
 	//Fixing facebook bug with redirect
-	//if (window.location.hash === '#_=_') window.location.hash = '#!';
+	if (window.location.hash === '#') window.location.hash = '#!';
+
+	if(window.history && window.history.pushState){
+    $locationProvider.html5Mode(true);
+  }
 
 	//Then init the app
 	angular.bootstrap(document, [ApplicationConfiguration.applicationModuleName]);
