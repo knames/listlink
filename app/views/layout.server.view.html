@@ -31,6 +31,9 @@
 	<meta name="twitter:url" content="{{url}}">
 	<meta name="twitter:image" content="/img/brand/logo.png">
 
+	<!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
 	<!-- Fav Icon -->
 	<link href="/modules/core/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon">
 
@@ -38,6 +41,10 @@
 	{% for cssFile in cssFiles %}
 		<link rel="stylesheet" href="{{cssFile}}">
 	{% endfor %}
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
 
 	<!-- HTML5 Shim -->
 	<!--[if lt IE 9]>
@@ -45,16 +52,23 @@
 	<![endif]-->
 </head>
 <body class="ng-cloak">
-<br><br>
+	
+<div align="center">
 	{% block head %}
 		{% if !user %}
 			<h2>Welcome to ListLink! :D</h2>
 			<p>Please sign in.</p>
+			<form action="/auth/google"> <input type="submit" value="Google Signin"></form>
+			<br>
+			<form action="/auth/github"> <input type="submit" value="Github Signin"></form>
 		{% else %}
 			<h2>Welcome back to ListLink! :D</h2>
 			<p>Current username is {{ user.username }}<p>
+			<form action="/auth/signout"> <input type="submit" value="Signout"></form>
+
 		{% endif %}
 	{% endblock %}
+</div>
 
 	<!--Embedding The User Object-->
 	<script type="text/javascript">
