@@ -170,9 +170,9 @@
 						type: 'POST',
 						url: "/list/{{user.username}}",
             			data: dataString,
-						success: alert('success'),
+						success: console.log('success'),
 						error: function() {
-							alert("Error creating root list");
+							console.log("Error creating root list");
 						}
 					});
 				}
