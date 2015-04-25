@@ -6,7 +6,7 @@
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	List = mongoose.model('List'),
-	Users = mongoose.model('Users'),
+	Users = mongoose.model('User'),
 	_ = require('lodash');
 
 
