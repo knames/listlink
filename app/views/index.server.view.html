@@ -182,7 +182,9 @@
 						type: 'GET',
 						url: '/list/{{user.username}}',
 						success: function(data) {
-              dataArray = data;
+              for (var i in data) {
+                document.getElementById('allLists') = document.getElementById('allLists') + "<li>" + i.content + " -<i>" + i.updated + "</i></li>";
+              }
             },
 						error: function(){
 							alert("error with get in showlist")
@@ -233,11 +235,9 @@
 			</script>
 			<br>
 			<button onclick="getlist();"> placeholder for auto get list </button>
-      {% for i in dataArray %}
-        {% if loop.first %}<ul>{% endif %}
-        <li>{{ i.content }} -<i>{{ i.updated }}</i></li>
-        {% if loop.last %}</ul>{% endif %}
-      {% endfor %}
+
+      <ul id="allLists"></ul>
+
 		  <br><br>
 			<details>
 				<summary>Create New List</summary>
