@@ -52,23 +52,6 @@
 	<![endif]-->
 </head>
 <body class="ng-cloak">
-	
-<div align="center">
-	{% block head %}
-		{% if !user %}
-			<h2>Welcome to ListLink! :D</h2>
-			<p>Please sign in.</p>
-			<form action="/auth/google"> <input type="submit" value="Google Signin"></form>
-			<br>
-			<form action="/auth/github"> <input type="submit" value="Github Signin"></form>
-		{% else %}
-			<h2>Welcome back to ListLink! :D</h2>
-			<p>Current username is {{ user.username }}<p>
-			<form action="/auth/signout"> <input type="submit" value="Signout"></form>
-
-		{% endif %}
-	{% endblock %}
-</div>
 
 	<!--Embedding The User Object-->
 	<script type="text/javascript">

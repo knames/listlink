@@ -1,5 +1,18 @@
 {% extends 'layout.server.view.html' %}
 
 {% block content %}
-	<section data-ui-view></section>
+	<div align="center">
+		{% if !user %}
+			<h2>Welcome to ListLink! :D</h2>
+			<p>Please sign in.</p>
+			<form action="/auth/google"> <input type="submit" value="Google Signin"></form>
+			<br>
+			<form action="/auth/github"> <input type="submit" value="Github Signin"></form>
+		{% else %}
+			<h2>Welcome back to ListLink! :D</h2>
+			<p>Current username is {{ user.username }}<p>
+			<form action="/auth/signout"> <input type="submit" value="Signout"></form>
+
+		{% endif %}
+	</div>
 {% endblock %}
