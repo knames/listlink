@@ -147,6 +147,7 @@
 			<!-- <form action="/auth/signout"> <input type="submit" value="Signout"></form> -->
 
 						<script>
+              var dataArray;
               var rootID;
 				function httpGet(theUrl)
 					{
@@ -180,18 +181,16 @@
 					$.ajax({
 						type: 'GET',
 						url: '/list/{{user.username}}',
-						success: writeList,
+						success: function(data) {
+              dataArray = data;
+            },
 						error: function(){
 							alert("error with get in showlist")
 						}
 					});
 				}
 
-        var dataArray;
 
-        function writeList(data) {
-          dataArray = data;
-        }
 
 				function getlist(){
 					var json = JSON.parse(httpGet('/root/{{user.username}}'));
