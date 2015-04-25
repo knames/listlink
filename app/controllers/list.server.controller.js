@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	List = mongoose.model('List'),
+	Users = mongoose.model('Users'),
 	_ = require('lodash');
 
 
@@ -94,14 +95,24 @@ exports.remove = function(req, res) {
 };
 
 exports.rootID = function(req, res, username) {
-	List.findOne({ "$and": [{ user.username: username }, { root: true }]}, function(err, doc) {
+	Users.find().exec(function(err, users) {
 		if (err) {
 			return res.status(404).send({
-				message: 'Root list not found'
+				message: 'Could not find any users'
 			});
 		}
-		res.send(doc.root);
-	});
+		// Array of references to all root lists
+		var allUsers = users.map(function(user) { return user._id; });
+
+		List.findOne({$and: [{user: {$in: allUsers}}, {root: true}]}, function(err, doc) {
+			if (err) {
+				return res.status(404).send({
+					message: 'Root list not found'
+				});
+			}
+			res.send(doc._id);
+		});
+	}
 }
 
 /**
@@ -130,5 +141,6 @@ exports.getListByID = function(req, res, next, id) {
  * Returns the current level of authorization of the validated user
  */
 exports.hasAuthorization = function(req, res, next) {
+
 	next();
 };
