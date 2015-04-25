@@ -20,7 +20,12 @@ var ListSchema = new Schema({
 		trim: true,
 		required: 'content cannot be blank'
 	},
-	completed: Boolean,
+	boxtype:{
+		type: String,
+		default: '',
+		trim: true
+	},
+	isSubList: boolean,
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'
