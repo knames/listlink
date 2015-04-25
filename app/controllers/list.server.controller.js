@@ -12,17 +12,28 @@ var mongoose = require('mongoose'),
 
 
 /**
- * Reads all the lists for the current username
+ * Reads all the sublists for the given list
  */
 exports.getLists = function(req, res) {
-  res.send('Attempted to get lists' + req.head);
+
 };
 
 /**
  * Creates a list for the current username
  */
 exports.create = function(req, res) {
-  res.send('Attempted to create list' + req.head);
+	var list = new List(req.body);
+	list.user = req.user;
+
+	list.save(function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.json(list);
+		}
+	});
 };
 
 /**
@@ -39,9 +50,28 @@ exports.remove = function(req, res) {
   res.send('Attempted to remove list' + req.head);
 };
 
+exports.getListByID = function(req, res, next, id) {
+	if (!mongoose.Types.ObjectId.isValid(id)) {
+		return res.status(400).send({
+			message: 'Requested list is invalid'
+		});
+	}
+
+	List.findById(id).populate('user', 'content', 'type').exec(function(err, list) {
+		if (err) return next(err);
+		if (!list) {
+			return res.status(404).send({
+				message: 'Article not found'
+			});
+		}
+		req.article = article;
+		next();
+	});
+};
+
 /**
  * Returns the current level of authorization of the validated user
  */
 exports.hasAuthorization = function(req, res, next) {
-  next();
+	next();
 };
