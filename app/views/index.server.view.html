@@ -167,10 +167,21 @@
 					$.ajax({
 						type: 'POST',
 						url: "/list/{{user.username}}",
-            data: dataString,
+            			data: dataString,
 						success: alert('success'),
 						error: function() {
 							alert("Error creating root list");
+						}
+					});
+				}
+
+				function showList(){
+					$.ajax({
+						type: 'GET',
+						url: '/list/{user.username',
+						success: alert('successful get in showlist!'),
+						error: function(){
+							alert("error with get in showlist")
 						}
 					});
 				}
@@ -184,6 +195,7 @@
 					} else {
 						console.log('display rootlist');
 						// do display
+						showList();
 						//console.log(json[''])
 					}
 
