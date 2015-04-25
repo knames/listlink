@@ -178,7 +178,7 @@
 				function showList(){
 					$.ajax({
 						type: 'GET',
-						url: '/list/{user.username',
+						url: '/list/{{user.username}}',
 						success: alert('successful get in showlist!'),
 						error: function(){
 							alert("error with get in showlist")
