@@ -184,8 +184,8 @@
 						success: function(data) {
               console.log(data);
 
-              for (var i in data) {
-                document.getElementById('allLists').innerHTML = document.getElementById('allLists').innerHTML + "<li>" + i.content + " -<i>" + i.updated + "</i></li>";
+              for (var i = 0; i < data.length; i++) {
+                document.getElementById('allLists').innerHTML = document.getElementById('allLists').innerHTML + "<li>" + data[i].content + " -<i>" + data[i].updated + "</i></li>";
               }
             },
 						error: function(){
