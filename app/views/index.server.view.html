@@ -4,10 +4,45 @@
 
 {% block content %}
 
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	   <a class="navbar-brand" href=#><img id="logo" alt="LL" src="/images/1.41.png"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Options <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <!-- <li><a href="/auth/signout">Signout</a></li> -->
+            <li><p>Logged in as:<br> {{ user.username }}<p></li>
+            <li><form action="/auth/signout"> <input type="submit" value="Signout"></form></li>
+            <!-- <li><a href="#">Another action</a></li> -->
+            <!-- <li><a href="#">Something else here</a></li> -->
+            <!-- <li class="divider"></li>
+            <li><a href="#">Separated link</a></li> -->
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
 	<style>
 		#itemredtext{color:red}
 		#emailredtext{color:red}
+		#logo{
+			vertical-align: middle;
+		}
 		::-webkit-input-placeholder {
 		  color: grey;
 		  text-align: center;
@@ -109,9 +144,7 @@
 			<br>
 			<form action="/auth/github"> <input type="submit" value="Github Signin"></form>
 		{% else %}
-			<h2>Welcome back to ListLink! :D</h2>
-			<p>Currently logged in as {{ user.username }}<p>
-			<form action="/auth/signout"> <input type="submit" value="Signout"></form>
+			<!-- <form action="/auth/signout"> <input type="submit" value="Signout"></form> -->
 
 						<script>
 				function httpGet(theUrl)
