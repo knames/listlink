@@ -66,9 +66,9 @@
 		var jsond = "";
 		for (i =0; i < emailArray.length; i++){
 			if (i==emailArray.length-1)
-				jsond = jsond+"\"email:\"" + emailArray[i] + "\"";
+				jsond = jsond+'"email:"' + emailArray[i] + '"';
 			else 
-				jsond = jsond+'\"email:\"' + emailArray[i] + '\",';
+				jsond = jsond+'"email:"' + emailArray[i] + '",';
 		}
 		//console.log(jsond);
 		var element = document.getElementById("jsonEmail").value = jsond;
