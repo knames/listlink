@@ -58,7 +58,7 @@
 		:-moz-placeholder { /* Firefox 18- */
 		  color: grey;
 		  text-align: center;
-		}	
+		}
 </style>
 
 	<script>
@@ -163,7 +163,7 @@
 						'&root=true';
 					$.ajax({
 						type: 'POST',
-						url: "/lists/{{user.username}}",
+						url: "/list/{{user.username}}",
 						success: alert('success'),
 						error: function() {
 							alert("Error creating root list");
@@ -182,7 +182,7 @@
 						// do display
 						//console.log(json[''])
 					}
-				
+
 					var id = json.root;
 					//alert(id);
 				}
@@ -195,7 +195,7 @@
 				<summary>Create New List</summary>
 					<form name="createItem" method="post" action="/list/{{user.username}}">
 					Please enter a list item:<br>
-					<input id="item" name="content" placeholder="Item to Add" type="text" onblur="javascript:checkItem();" onchange="javascript:checkItem();">					
+					<input id="item" name="content" placeholder="Item to Add" type="text" onblur="javascript:checkItem();" onchange="javascript:checkItem();">
 
 					<input id="emailUsers" type="text" value="" placeholder="Emails to Share With" onblur="javascript:checkEmails();"><br>
 					<input id="jsonEmail" name="access" type="text" hidden>

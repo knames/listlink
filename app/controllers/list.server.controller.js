@@ -44,7 +44,7 @@ exports.create = function(req, res) {
 	// quotes.
 	workingJson = workingJson.replace("\"\"", "\"");
 
-	list.access = workingJson;
+	list.access = JSON.parse(workingJson);
 
 	list.save(function(err) {
 		if (err) {
@@ -114,7 +114,7 @@ exports.getListByID = function(req, res, next, id) {
 		});
 	}
 
-	List.findById(id).populate().exec(function(err, list) {
+	List.findById(id).exec(function(err, list) {
 		if (err) return next(err);
 		if (!list) {
 			return res.status(404).send({
