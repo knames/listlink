@@ -162,6 +162,8 @@
 					var dataString = 'content=' + listName +
 						'&isSubList=false' +
 						'&root=true';
+
+          console.log(dataString);
 					$.ajax({
 						type: 'POST',
 						url: "/list/{{user.username}}",
