@@ -147,6 +147,7 @@
 			<!-- <form action="/auth/signout"> <input type="submit" value="Signout"></form> -->
 
 						<script>
+              var rootID;
 				function httpGet(theUrl)
 					{
 					    var xmlHttp = null;
@@ -179,13 +180,19 @@
 					$.ajax({
 						type: 'GET',
 						url: '/list/{{user.username}}',
-						success: alert('fun!'),
+						success: writeList,
 						error: function(){
 							alert("error with get in showlist");
 						}
 					});
 
 				}
+
+        var dataArray;
+
+        function writeList(data) {
+          dataArray = data;
+        }
 
 				function getlist(){
 					var json = JSON.parse(httpGet('/root/{{user.username}}'));
@@ -200,12 +207,13 @@
 						//console.log(json[''])
 					}
 
-					var id = json.root;
+					rootID = json.root;
+          console.log(rootID);
 					//alert(id);
 				}
 
 				function submitList(){
-					var content =document.getElementById('item').value; 
+					var content =document.getElementById('item').value;
 					var jsoncontent =  '\"content\":\"'+content+'\"';
 					var emails = "\"access\":["+document.getElementById('jsonEmail').value+"]";
 					//var dataString = jsoncontent+","+emails;
@@ -227,8 +235,12 @@
 			</script>
 			<br>
 			<button onclick="getlist();"> placeholder for auto get list </button>
-
-			<br><br>
+      {% for i in dataArray %}
+        {% if loop.first %}<ul>{% endif %}
+        <li>{{ i.content }} -<i>{{ i.updated }}</i></li>
+        {% if loop.last %}</ul>{% endif %}
+      {% endfor %}
+		  <br><br>
 			<details>
 				<summary>Create New List</summary>
 					<form name="createItem">
