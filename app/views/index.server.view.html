@@ -194,7 +194,7 @@
               console.log(data);
 
               for (var i = 0; i < data.length; i++) {
-                document.getElementById('allLists').innerHTML = document.getElementById('allLists').innerHTML + "<li>" + data[i].content + " -<i>" + data[i].updated + "</i> <button onclick=\"deleteList(" + data[i]._id + ")\"</li>";
+                document.getElementById('allLists').innerHTML = document.getElementById('allLists').innerHTML + "<li>" + data[i].content + " -<i>" + data[i].updated + "</i> <button onclick=\"deleteList(" + data[i]._id + ")\">-</button></li>";
               }
             },
 						error: function(){
