@@ -121,9 +121,9 @@
 		var jsond = "";
 		for (i =0; i < emailArray.length; i++){
 			if (i==emailArray.length-1)
-				jsond = jsond+'"email:"' + emailArray[i] + '"';
+				jsond = jsond+'"email":' +'"'+ emailArray[i] + '"';
 			else
-				jsond = jsond+'"email:"' + emailArray[i] + '",';
+				jsond = jsond+'"email":' +'"' + emailArray[i] + '",';
 		}
 		//console.log(jsond);
 		var element = document.getElementById("jsonEmail").value = jsond;
@@ -204,6 +204,25 @@
           console.log(rootID);
 					//alert(id);
 				}
+
+				function submitList(){
+					var content =document.getElementById('item').value; 
+					var jsoncontent =  '\"content\":\"'+content+'\"';
+					var emails = "\"access\":["+document.getElementById('jsonEmail').value+"]";
+					var dataString = jsoncontent+","+emails;
+					//alert(dataString);
+					console.log(dataString);
+					$.ajax({
+						type: 'POST',
+						url: "/list/{{user.username}}",
+            			data: dataString,
+            			datatype: "json",
+						success: alert('success'),
+						error: function() {
+							alert("Error creating root list");
+						}
+					});
+				}
 			</script>
 			<br>
 			<button onclick="getlist();"> placeholder for auto get list </button>
@@ -211,13 +230,13 @@
 			<br><br>
 			<details>
 				<summary>Create New List</summary>
-					<form name="createItem" method="post" action="/list/{{user.username}}">
+					<form name="createItem">
 					Please enter a list item:<br>
 					<input id="item" name="content" placeholder="Item to Add" type="text" onblur="javascript:checkItem();" onchange="javascript:checkItem();">
 
 					<input id="emailUsers" type="text" value="" placeholder="Emails to Share With" onblur="javascript:checkEmails();"><br>
 					<input id="jsonEmail" name="access" type="text" hidden>
-					<input id="submit" type="submit" value="Submit" disabled> </a>
+					<button id="submit" onclick="submitList()" disabled> button </a><br>
 					<p id="itemredtext" visibility="false"></p>
 					<p id="emailredtext" visibiloty = "false"></p>
 					</form>
