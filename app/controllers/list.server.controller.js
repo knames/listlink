@@ -33,14 +33,26 @@ exports.create = function(req, res) {
 	var list = new List(req.body);
 	list.user = req.user;
 
+	// For some reason the server likes to insert escape characters here, so we
+	// must remove them manually
+	var workingJson = list.access;
+
+	// Removing all backslashes, they can't be in emails.
+	workingJson = workingJson.replace("\\", "");
+
+	// Removing the first and second-to-last character; these are unnecessary
+	// quotes.
+	workingJson = workingJson.replace("\"\"", "\"");
+
+	list.access = workingJson;
+
 	list.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			var workingJson = list;
-			res.send(list.access);
+			res.json(list);
 		}
 	});
 };
