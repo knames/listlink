@@ -147,6 +147,7 @@
 			<!-- <form action="/auth/signout"> <input type="submit" value="Signout"></form> -->
 
 						<script>
+              var rootID;
 				function httpGet(theUrl)
 					{
 					    var xmlHttp = null;
@@ -199,7 +200,8 @@
 						//console.log(json[''])
 					}
 
-					var id = json.root;
+					rootID = json.root;
+          console.log(rootID);
 					//alert(id);
 				}
 			</script>
