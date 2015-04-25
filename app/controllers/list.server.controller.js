@@ -105,7 +105,7 @@ exports.rootID = function(req, res, username) {
 		var allUsers = users.map(function(user) { return user._id; });
 
 		List.findOne({$and: [{user: {$in: allUsers}}, {root: true}]}, function(err, doc) {
-			if (err) {
+			if (err || doc == null) {
 				return res.status(404).send({
 					message: 'Root list not found'
 				});
