@@ -79,12 +79,12 @@
 	<!-- FORM SHIT IN HERE-->
 	<form name="createItem" method="post" action="/list/{{user.username}}">
 	Please enter a list item:<br>
-	<input id="item" name="content" type="text" onblur="javascript:checkItem();" onchange="javascript:checkItem();"><br>
+	<input id="item" name="content" value="test" type="text" onblur="javascript:checkItem();" onchange="javascript:checkItem();"><br>
 	Please enter the comma separated emails of the users you would like to share this list with:
 	<br>
 	<!-- name is hidden here because we are using a second, hidden input box with correcy
 		json formatting. -->
-	<input id="emailUsers" type="text" onblur="javascript:checkEmails();"><br>
+	<input id="emailUsers" type="text" value="a@b.com, b@c.com" onblur="javascript:checkEmails();"><br>
 	<input id="jsonEmail" name="access" type="text" hidden>
 	<input id="submit" type="submit" value="Submit" disabled> </a>
 	<p id="redtext" visibility="false"></p>
