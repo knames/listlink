@@ -16,3 +16,10 @@ exports.createparent = function(req, res) {
 		request: req
 	});
 };
+
+exports.showlists = function(req, res) {
+	res.render('showlists', {
+		user: req.user || null,
+		request: req
+	});
+};

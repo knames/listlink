@@ -34,8 +34,8 @@ exports.create = function(req, res) {
 	list.user = req.user;
 
 	// For some reason the server likes to insert escape characters here, so we
-	// must remove them manually
-	var workingJson = list.access;
+	// must remove them manually. Step 1, convert to string.
+	var workingJson = JSON.stringify(list.access);
 
 	// Removing all backslashes, they can't be in emails.
 	workingJson = workingJson.replace("\\", "");

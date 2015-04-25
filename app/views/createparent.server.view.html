@@ -1,5 +1,7 @@
 {% extends 'layout.server.view.html' %}
 
+{% block title %}Create List{% endblock %}
+
 {% block content %}
 	<style>
 		#redtext{color:red}
@@ -43,7 +45,7 @@
 			}
 		}
 	}
-	
+
 	// verifies there's actually an item to submit
 	function checkItem(){
 		var item = document.getElementById('item').value;
@@ -67,7 +69,7 @@
 		for (i =0; i < emailArray.length; i++){
 			if (i==emailArray.length-1)
 				jsond = jsond+'"email:"' + emailArray[i] + '"';
-			else 
+			else
 				jsond = jsond+'"email:"' + emailArray[i] + '",';
 		}
 		//console.log(jsond);
