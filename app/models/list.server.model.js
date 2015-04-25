@@ -25,7 +25,7 @@ var ListSchema = new Schema({
 		default: '',
 		trim: true
 	},
-	isSubList: boolean,
+	isSubList: Boolean,
 	user: {
 		type: Schema.ObjectId,
 		ref: 'User'
