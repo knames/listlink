@@ -39,7 +39,8 @@ exports.create = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
-			res.send(list);
+			var workingJson = list;
+			res.send(list.access);
 		}
 	});
 };
