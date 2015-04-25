@@ -53,6 +53,8 @@
 </head>
 <body class="ng-cloak">
 
+	{% block content %}{% endblock %}
+
 	<!--Embedding The User Object-->
 	<script type="text/javascript">
 		var user = {{ user | json | safe }};
