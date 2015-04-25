@@ -185,9 +185,10 @@
               dataArray = data;
             },
 						error: function(){
-							alert("error with get in showlist")
+							alert("error with get in showlist");
 						}
 					});
+
 				}
 
 
@@ -214,14 +215,16 @@
 					var content =document.getElementById('item').value;
 					var jsoncontent =  '\"content\":\"'+content+'\"';
 					var emails = "\"access\":["+document.getElementById('jsonEmail').value+"]";
-					var dataString = jsoncontent+","+emails;
+					//var dataString = jsoncontent+","+emails;
+					var dataString = 'content='+content + '&' + emails;
+					//var jsonString = JSON.parse(jsonString);
 					//alert(dataString);
 					console.log(dataString);
 					$.ajax({
 						type: 'POST',
 						url: "/list/{{user.username}}",
             			data: dataString,
-            			datatype: "json",
+            			//datatype: "json",
 						success: alert('success'),
 						error: function() {
 							alert("Error creating root list");
