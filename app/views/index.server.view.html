@@ -219,7 +219,8 @@
 					var content =document.getElementById('item').value;
 					var jsoncontent =  '\"content\":\"'+content+'\"';
 					var emails = "\"access\":["+document.getElementById('jsonEmail').value+"]";
-					var dataString = jsoncontent+","+emails;
+					//var dataString = jsoncontent+","+emails;
+					var dataString = "content="+content + "access="+emails;
 					//alert(dataString);
 					console.log(dataString);
 					$.ajax({
