@@ -112,7 +112,7 @@ exports.rootID = function(req, res, username) {
 			}
 			res.send(doc._id);
 		});
-	}
+	});
 };
 
 /**
