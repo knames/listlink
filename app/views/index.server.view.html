@@ -3,6 +3,104 @@
 {% block title %}Index{% endblock %}
 
 {% block content %}
+
+
+	<style>
+		#itemredtext{color:red}
+		#emailredtext{color:red}
+		::-webkit-input-placeholder {
+		  color: grey;
+		  text-align: center;
+		}
+		::-moz-placeholder { /* Firefox 19+ */
+		  color: grey;
+		  text-align: center;
+		}
+		:-ms-input-placeholder {
+		  color: grey;
+		  text-align: center;
+		}
+		:-moz-placeholder { /* Firefox 18- */
+		  color: grey;
+		  text-align: center;
+		}	
+</style>
+
+	<script>
+	// default values used to disable submit
+	var gooditem = false;
+	var goodemails = true;
+
+	// Verifies that the emails entered are valid and readable.
+	// disables submit if errors are present
+	function checkEmails(){
+		var emails = document.getElementById("emailUsers").value;
+		var emailArray = emails.split(", ");
+		var valid = true;
+		var goodemails = true;
+		var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[	0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+		if (emails == ""){
+			valid = true;
+			//goodemails = true;
+			if (gooditem == true && goodemails == true)
+				document.getElementById("submit").disabled=false;
+			document.getElementById("emailredtext").innerHTML="";
+		} else {
+			for (var i = 0; i < emailArray.length; i++) {
+			     if( emailArray == "" || ! regex.test(emailArray[i])){
+			         valid = false;
+			         goodemails = false;
+			     } else {
+			     	document.getElementById("submit").disabled=false;
+					document.getElementById("emailredtext").innerHTML="";
+					jsonEmails();
+			     }
+			}
+			if (valid == false){
+				document.getElementById("submit").disabled=true;
+				document.getElementById("emailredtext").innerHTML=" One or more email addresses entered is invalid. <br>Please separate them by commas and one space. <br> Example: abc@example.com, def@example.com<br> This field can also be left blank.";
+			}
+		}
+	}
+
+	// verifies there's actually an item to submit
+	function checkItem(){
+		var item = document.getElementById('item').value;
+		if (item == null || item == ""){
+			document.getElementById("itemredtext").innerHTML="Please enter an item";
+			document.getElementById("submit").disabled=true;
+			gooditem =false;
+		} else {
+			item = item.value;
+			gooditem=true;
+			if (gooditem == true && goodemails == true)
+				document.getElementById("submit").disabled=false;
+				document.getElementById("itemredtext").innerHTML="";
+		}
+	}
+
+	function jsonEmails(){
+		var emails = document.getElementById("emailUsers").value;
+		var emailArray = emails.split(", ");
+		var jsond = "";
+		for (i =0; i < emailArray.length; i++){
+			if (i==emailArray.length-1)
+				jsond = jsond+'"email:"' + emailArray[i] + '"';
+			else
+				jsond = jsond+'"email:"' + emailArray[i] + '",';
+		}
+		//console.log(jsond);
+		var element = document.getElementById("jsonEmail").value = jsond;
+	}
+
+	</script>
+
+
+
+
+
+
 	<div align="center">
 		{% if !user %}
 			<h2>Welcome to ListLink! :D</h2>
@@ -12,8 +110,52 @@
 			<form action="/auth/github"> <input type="submit" value="Github Signin"></form>
 		{% else %}
 			<h2>Welcome back to ListLink! :D</h2>
-			<p>Current username is {{ user.username }}<p>
+			<p>Currently logged in as {{ user.username }}<p>
 			<form action="/auth/signout"> <input type="submit" value="Signout"></form>
+
+						<script>
+				function httpGet(theUrl)
+					{
+					    var xmlHttp = null;
+
+					    xmlHttp = new XMLHttpRequest();
+					    xmlHttp.open( "GET", theUrl, false );
+					    xmlHttp.send( null );
+					    return xmlHttp.responseText;
+					}
+
+				function getlist(){
+					var json = JSON.parse(httpGet('/users/me'));
+					var id = json.rootlist;
+					alert(id);
+
+				}
+			</script>
+			<br>
+			<button onclick="getlist();"> placeholder for auto get list </button>
+
+			<br><br>
+			<details>
+				<summary>Create New List</summary>
+					<form name="createItem" method="post" action="/list/{{user.username}}">
+					Please enter a list item:<br>
+					<input id="item" name="content" placeholder="Item to Add" type="text" onblur="javascript:checkItem();" onchange="javascript:checkItem();">					
+
+					<input id="emailUsers" type="text" value="" placeholder="Emails to Share With" onblur="javascript:checkEmails();"><br>
+					<input id="jsonEmail" name="access" type="text" hidden>
+					<input id="submit" type="submit" value="Submit" disabled> </a>
+					<p id="itemredtext" visibility="false"></p>
+					<p id="emailredtext" visibiloty = "false"></p>
+					</form>
+			</details>
+
+
+	<script>
+	// calls checkItem on key relase
+	$( "#item" ).keyup(function() {
+	  checkItem();
+	});
+</script>
 
 		{% endif %}
 	</div>
