@@ -113,7 +113,7 @@ exports.rootID = function(req, res, username) {
 			res.send(doc._id);
 		});
 	}
-}
+};
 
 /**
  * Gets a single List based on its ID
