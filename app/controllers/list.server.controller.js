@@ -93,6 +93,17 @@ exports.remove = function(req, res) {
 	});
 };
 
+exports.rootID = function(req, res, username) {
+	List.findOne({ "$and": [{ user: username }, { root: true }], function(err, doc) {
+		if (err) {
+			return res.status(404).send({
+				message: 'Root list not found'
+			});
+		}
+		res.send(doc.root);
+	});
+}
+
 /**
  * Gets a single List based on its ID
  */

@@ -88,10 +88,6 @@ var UserSchema = new Schema({
 	},
 	resetPasswordExpires: {
 		type: Date
-	},
-	rootlist: {
-		type: Schema.ObjectId,
-		ref: 'List'
 	}
 });
 

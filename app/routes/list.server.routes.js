@@ -12,6 +12,9 @@ module.exports = function(app) {
 		.get(users.requiresLogin, list.hasAuthorization, list.getLists)
 		.post(users.requiresLogin, list.hasAuthorization, list.create);
 
+	app.route('/root/:username')
+		.get(users.requiresLogin, list.rootID)
+
 	app.route('/list/id/:id')
 		.get(users.requiresLogin, list.hasAuthorization, list.getListByID)
 

@@ -35,6 +35,7 @@ var ListSchema = new Schema({
 	default: 'User',
 	required: 'enter any other users'
 	},
+	root: Boolean,
 	children: {
 		type: [Schema.ObjectId],
 		ref: 'List'
