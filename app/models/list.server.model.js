@@ -31,12 +31,12 @@ var ListSchema = new Schema({
 		ref: 'User'
 	},
 	access: {
-	type: Array,
+	type: [],
 	default: 'User',
 	required: 'enter any other users'
 	},
 	children: {
-		type: Array,
+		type: [Schema.ObjectId],
 		ref: 'List'
 	}
 });

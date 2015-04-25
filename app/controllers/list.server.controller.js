@@ -32,6 +32,7 @@ exports.getLists = function(req, res) {
 exports.create = function(req, res) {
 	var list = new List(req.body);
 	list.user = req.user;
+	list.access = JSON.parse(req.access);
 
 	list.save(function(err) {
 		if (err) {
