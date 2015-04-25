@@ -227,9 +227,9 @@
 						url: "/list/{{user.username}}",
             			data: dataString,
             			datatype: "json",
-						success: alert('success'),
+						success: console.log('success'),
 						error: function() {
-							alert("Error creating root list");
+							console.log("Error creating list");
 						}
 					});
 				}
