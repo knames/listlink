@@ -36,7 +36,7 @@ var ListSchema = new Schema({
 	required: 'enter any other users'
 	},
 	children: {
-		type: [Scheme.ObjectId],
+		type: [Schema.ObjectId],
 		ref: 'List'
 	}
 });
