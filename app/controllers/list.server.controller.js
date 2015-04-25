@@ -142,5 +142,10 @@ exports.getListByID = function(req, res, next, id) {
  * Returns the current level of authorization of the validated user
  */
 exports.hasAuthorization = function(req, res, next) {
+	if (req.list.user.id !== req.user.id) {
+		return res.status(403).send({
+			message: 'User is not authorized'
+		});
+	}
 	next();
 };
