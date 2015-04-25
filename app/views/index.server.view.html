@@ -157,11 +157,34 @@
 					    return xmlHttp.responseText;
 					}
 
-				function getlist(){
-					var json = JSON.parse(httpGet('/users/me'));
-					var id = json.rootlist;
-					alert(id);
+				function createList(){
+					var dataString = 'content=My Lists' +
+						'&isSubList=false' +
+						'&root=true';
+					$.ajax({
+						type: 'POST',
+						url: "/lists/{{user.username}}",
+						success: alert('success'),
+						error: function() {
+							alert("Error creating root list");
+						}
+					});
+				}
 
+				function getlist(){
+					var json = JSON.parse(httpGet('/root/{{user.username}}'));
+					if (json['message'] == "Root list not found"){
+						console.log('creating root list');
+						// create rootlist
+						createList();
+					} else {
+						console.log('display rootlist');
+						// do display
+						//console.log(json[''])
+					}
+				
+					var id = json.root;
+					//alert(id);
 				}
 			</script>
 			<br>
