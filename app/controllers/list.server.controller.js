@@ -48,16 +48,41 @@ exports.create = function(req, res) {
  * Update a list by ID
  */
 exports.update = function(req, res) {
-  res.send('Attempted to update list' + req.head);
+	var list = req.list;
+
+ 	list = _.extend(list, req.body);
+
+	list.save(function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.json(list);
+		}
+	});
 };
 
 /**
  * Remove a list by ID
  */
 exports.remove = function(req, res) {
-  res.send('Attempted to remove list' + req.head);
+	var list = req.list;
+
+	list.remove(function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.json(list);
+		}
+	});
 };
 
+/**
+ * Gets a single List based on its ID
+ */
 exports.getListByID = function(req, res, next, id) {
 	if (!mongoose.Types.ObjectId.isValid(id)) {
 		return res.status(400).send({
@@ -65,14 +90,14 @@ exports.getListByID = function(req, res, next, id) {
 		});
 	}
 
-	List.findById(id).populate('user', 'content', 'type').exec(function(err, list) {
+	List.findById(id).populate().exec(function(err, list) {
 		if (err) return next(err);
 		if (!list) {
 			return res.status(404).send({
-				message: 'Article not found'
+				message: 'List not found'
 			});
 		}
-		req.article = article;
+		req.list = list;
 		next();
 	});
 };

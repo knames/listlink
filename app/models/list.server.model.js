@@ -35,7 +35,10 @@ var ListSchema = new Schema({
 	default: 'User',
 	required: 'enter any other users'
 	},
-	children: [ListSchema]
+	children: {
+		type: [Scheme.ObjectId],
+		ref: 'List'
+	}
 });
 
 mongoose.model('List', ListSchema);

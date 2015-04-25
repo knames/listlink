@@ -12,9 +12,12 @@ module.exports = function(app) {
 		.get(users.requiresLogin, list.hasAuthorization, list.getLists)
 		.post(users.requiresLogin, list.hasAuthorization, list.create);
 
+	app.route('/list/id/:id')
+		.get(users.requiresLogin, list.hasAuthorization, list.getListByID)
+
   app.route('/edit/:editList')
     .put(users.requiresLogin, list.hasAuthorization, list.update)
     .delete(users.requiresLogin, list.hasAuthorization, list.remove);
 
-	
+
 };
