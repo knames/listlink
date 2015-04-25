@@ -177,6 +177,15 @@
 					});
 				}
 
+        function deleteList(id) {
+          $.ajax({
+            type:'DELETE',
+            url: '/edit/'+id,
+            success: console.log('Deleted'),
+            error: console.log('Error')
+            });
+          }
+
 				function showList(){
 					$.ajax({
 						type: 'GET',
@@ -185,7 +194,7 @@
               console.log(data);
 
               for (var i = 0; i < data.length; i++) {
-                document.getElementById('allLists').innerHTML = document.getElementById('allLists').innerHTML + "<li>" + data[i].content + " -<i>" + data[i].updated + "</i></li>";
+                document.getElementById('allLists').innerHTML = document.getElementById('allLists').innerHTML + "<li>" + data[i].content + " -<i>" + data[i].updated + "</i> <button onclick=\"deleteList(" + data[i]._id + ")\"</li>";
               }
             },
 						error: function(){
