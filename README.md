@@ -34,3 +34,12 @@ $ node server
 ```
 
 Navigate to `http://localhost:3000/` in your browser to verify that it is working. If all goes well, congratulations, you are now an official ListLink Ninja!
+
+#### Notes
+
+If you do intend to deploy ListLink, please note the following:
+
+* ListLink is based on the MEAN stack. We are using MongoDB, Express.js, Angular.js, and Node.js.
+* MongoDB handles all the data storage based on NoSQL. This allows us to pass data freely to the server, since there is no equivilent to "SQL Injection" as experienced by relational databases.
+* Bootstrap handles much of the styling. The [Swig](http://paularmstrong.github.io/swig/) template engine was used to display the contents; it was the default template engine used in MEAN.js, and we stuck with it because it works nicely with default HTML markup, and its system of [tags](http://paularmstrong.github.io/swig/docs/tags/) was a nice alternative to excessive use of JavaScript
+* Speaking of "excessive javascript"
