@@ -183,7 +183,7 @@
 						url: '/list/{{user.username}}',
 						success: function(data) {
               for (var i in data) {
-                document.getElementById('allLists') = document.getElementById('allLists') + "<li>" + i.content + " -<i>" + i.updated + "</i></li>";
+                document.getElementById('allLists').innerHTML = document.getElementById('allLists').innerHTML + "<li>" + i.content + " -<i>" + i.updated + "</i></li>";
               }
             },
 						error: function(){
