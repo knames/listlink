@@ -142,6 +142,11 @@ exports.getListByID = function(req, res, next, id) {
  * Returns the current level of authorization of the validated user
  */
 exports.hasAuthorization = function(req, res, next) {
-
+	// Are they not the owner, or in the access list?
+	if (!((req.list.user.id == req.user.id) || ($.inArray(req.list.user.username, req.list.access) > -1))) {
+		return res.status(403).send({
+			message: 'Current user not authorized to view this list'
+		});
+	}
 	next();
 };
