@@ -44,8 +44,9 @@ exports.create = function(req, res) {
 	// Removing the first and second-to-last character; these are unnecessary
 	// quotes.
 	workingJson = workingJson.replace("\"\"", "\"");
+  var workingJsonArray = workingJson.split(", ");
 
-	list.access = JSON.parse(workingJson);
+	list.access = JSON.parse(workingJsonArray);
 
 	list.save(function(err) {
 		if (err) {
