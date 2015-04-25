@@ -15,7 +15,15 @@ var mongoose = require('mongoose'),
  * Reads all the sublists for the given list
  */
 exports.getLists = function(req, res) {
-
+	List.find().populate('user', 'username').exec(function(err, lists) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.json(lists);
+		}
+	});
 };
 
 /**
